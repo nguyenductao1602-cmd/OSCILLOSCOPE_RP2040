@@ -1,0 +1,202 @@
+<svg viewBox="0 0 980 450" width="1960" height="900" xmlns="http://www.w3.org/2000/svg" style="background-color:#ffffff; color:#0f172a; font-family:Arial, 'Segoe UI', sans-serif;">
+  <defs>
+    <marker id="arrowSignal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#0f172a" />
+    </marker>
+    <marker id="arrowPower" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#b45309" />
+    </marker>
+    <marker id="arrowTrig" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#047857" />
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="980" height="450" fill="#ffffff" />
+  <g stroke="#0f172a" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 1. KHỐI NGUỒN -->
+    <rect x="130" y="14" width="720" height="72" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2.2" />
+    <text x="490" y="36" fill="#b45309" stroke="none" font-size="13.5" font-weight="bold" text-anchor="middle">
+      1. KHỐI NGUỒN ĐỐI XỨNG &amp; BẢO VỆ ĐẦU VÀO (12V DC → ±6V → ±5V, +3.3V)
+    </text>
+    <text x="490" y="55" fill="#0f172a" stroke="none" font-size="11" text-anchor="middle">
+      Chống ngược cực D1 (SS34) + TVS D4 (P6KE12CA) • Hạ áp kép U1 (+6V) &amp; U3 (−6V) + Diode phân cách
+    </text>
+    <text x="490" y="73" fill="#475569" stroke="none" font-size="10.2" text-anchor="middle">
+      Ổn áp tuyến tính: U5 KA78M05 (+5V) • Q1 PNP + Zener D5 5.6V + R43 1k (−5V) • U2 LM1117-3.3 (+3.3V)
+    </text>
+
+    <!-- Power Bus -->
+    <g stroke="#b45309" stroke-width="1.5" stroke-dasharray="5 3">
+      <line x1="490" y1="86" x2="490" y2="106" />
+      <line x1="370" y1="106" x2="875" y2="106" />
+      <line x1="670" y1="106" x2="670" y2="132" marker-end="url(#arrowPower)" />
+      <line x1="370" y1="106" x2="370" y2="288" marker-end="url(#arrowPower)" />
+      <line x1="600" y1="106" x2="600" y2="262" marker-end="url(#arrowPower)" />
+      <line x1="875" y1="106" x2="875" y2="278" marker-end="url(#arrowPower)" />
+    </g>
+    <text x="678" y="124" fill="#b45309" stroke="none" font-size="10" font-weight="bold">±5V</text>
+    <text x="376" y="276" fill="#b45309" stroke="none" font-size="10" font-weight="bold">±5V (U6B, U6C)</text>
+    <text x="606" y="254" fill="#b45309" stroke="none" font-size="10" font-weight="bold">+3.3V / ±5V</text>
+    <text x="882" y="266" fill="#b45309" stroke="none" font-size="10" font-weight="bold">+5V / +3.3V</text>
+
+    <!-- ROW 1: INPUT -> SW1 -> SW2 -> U6A -->
+    <circle cx="22" cy="176" r="4.5" fill="#ffffff" stroke="#0f172a" stroke-width="2.2" />
+    <text x="22" y="158" fill="#0f172a" stroke="none" font-size="12" font-weight="bold" text-anchor="middle">V_in</text>
+    <line x1="27" y1="176" x2="54" y2="176" marker-end="url(#arrowSignal)" />
+
+    <!-- BLOCK 2: J1 BNC / SW1 -->
+    <rect x="58" y="134" width="196" height="84" rx="7" fill="#ffffff" stroke="#0f172a" stroke-width="2" />
+    <text x="156" y="154" fill="#1d4ed8" stroke="none" font-size="12.2" font-weight="bold" text-anchor="middle">
+      2. Ngõ vào BNC (J1) &amp; SW1
+    </text>
+    <text x="156" y="172" fill="#0f172a" stroke="none" font-size="10.6" font-weight="bold" text-anchor="middle">
+      Chọn ghép nối: DC / AC / GND
+    </text>
+    <text x="156" y="189" fill="#475569" stroke="none" font-size="10" text-anchor="middle">
+      Tụ chặn C1 (100nF) ở chế độ AC
+    </text>
+    <text x="156" y="206" fill="#4f46e5" stroke="none" font-size="9.8" font-weight="bold" text-anchor="middle">
+      SW1B → /Mode_sel (GPIO28/ADC2)
+    </text>
+
+    <line x1="254" y1="176" x2="288" y2="176" marker-end="url(#arrowSignal)" />
+
+    <!-- BLOCK 3: Bộ chia SW2 -->
+    <rect x="292" y="134" width="244" height="84" rx="7" fill="#ffffff" stroke="#0f172a" stroke-width="2" />
+    <text x="414" y="154" fill="#1d4ed8" stroke="none" font-size="12.2" font-weight="bold" text-anchor="middle">
+      3. Cầu phân áp bù tần số SW2
+    </text>
+    <text x="414" y="172" fill="#0f172a" stroke="none" font-size="10.4" font-weight="bold" text-anchor="middle">
+      10mV (1:1) • 100mV (1:10) • 1V (1:101)
+    </text>
+    <text x="414" y="189" fill="#475569" stroke="none" font-size="9.8" text-anchor="middle">
+      Bù RC: C25=3pF/C29=15pF; C26=6pF/590pF
+    </text>
+    <text x="414" y="206" fill="#4f46e5" stroke="none" font-size="9.8" font-weight="bold" text-anchor="middle">
+      SW2B → /Vol_sel (GPIO27/ADC1)
+    </text>
+
+    <line x1="536" y1="176" x2="570" y2="176" marker-end="url(#arrowSignal)" />
+
+    <!-- BLOCK 4: U6A Buffer -->
+    <rect x="574" y="134" width="194" height="84" rx="7" fill="#ffffff" stroke="#0f172a" stroke-width="2" />
+    <text x="671" y="154" fill="#1d4ed8" stroke="none" font-size="12.2" font-weight="bold" text-anchor="middle">
+      4. Tầng đệm U6A (TL084)
+    </text>
+    <text x="671" y="172" fill="#0f172a" stroke="none" font-size="10.6" font-weight="bold" text-anchor="middle">
+      Khuếch đại lặp điện áp (A_v = 1.00)
+    </text>
+    <text x="671" y="189" fill="#475569" stroke="none" font-size="10" text-anchor="middle">
+      Ngõ vào JFET Z_in ≈ 10¹² Ω (Chân 3+)
+    </text>
+    <text x="671" y="206" fill="#475569" stroke="none" font-size="9.8" text-anchor="middle">
+      Cách ly cầu chia cao trở với tải sau
+    </text>
+
+    <!-- Turnaround U6A -> SW3 -->
+    <polyline points="768,176 786,176 786,244 38,244 38,342 54,342" marker-end="url(#arrowSignal)" />
+    <text x="440" y="238" fill="#475569" stroke="none" font-size="10.2" font-style="italic" text-anchor="middle">
+      Tín hiệu sau đệm tại ngõ ra chân 1 U6A (Nhãn mạng /X1, trở kháng ra thấp)
+    </text>
+
+    <!-- ROW 2: SW3 -> U6B+U6C -> ADC Prot & U6D Trigger -> YD-RP2040 -->
+    <!-- BLOCK 5: SW3 -->
+    <rect x="58" y="292" width="174" height="98" rx="7" fill="#ffffff" stroke="#0f172a" stroke-width="2" />
+    <text x="145" y="313" fill="#1d4ed8" stroke="none" font-size="12.2" font-weight="bold" text-anchor="middle">
+      5. Chia tinh SW3
+    </text>
+    <text x="145" y="331" fill="#0f172a" stroke="none" font-size="10.4" font-weight="bold" text-anchor="middle">
+      R26(300) - R27(180) - R28(120)
+    </text>
+    <text x="145" y="348" fill="#475569" stroke="none" font-size="10" text-anchor="middle">
+      Tỷ lệ X1 (1.0) • X2 (0.5) • X5 (0.2)
+    </text>
+    <text x="145" y="365" fill="#4f46e5" stroke="none" font-size="9.8" font-weight="bold" text-anchor="middle">
+      SW3B → /Scope_sel (GPIO22)
+    </text>
+    <text x="145" y="381" fill="#475569" stroke="none" font-size="9.3" text-anchor="middle">
+      (X1/X5 đọc cứng, X2 thu phóng PM)
+    </text>
+
+    <line x1="232" y1="342" x2="260" y2="342" marker-end="url(#arrowSignal)" />
+
+    <!-- BLOCK 6: U6B + U6C -->
+    <rect x="264" y="292" width="222" height="98" rx="7" fill="#ffffff" stroke="#0f172a" stroke-width="2" />
+    <text x="375" y="313" fill="#1d4ed8" stroke="none" font-size="12" font-weight="bold" text-anchor="middle">
+      6. Khuếch đại U6B + Dịch mức U6C
+    </text>
+    <text x="375" y="331" fill="#0f172a" stroke="none" font-size="10.4" font-weight="bold" text-anchor="middle">
+      Tách 2 tầng không đảo (A_v = 8.6888)
+    </text>
+    <text x="375" y="348" fill="#475569" stroke="none" font-size="9.7" text-anchor="middle">
+      U6B: R41=1k, R42=560 (A_v1=2.786, 1.08MHz)
+    </text>
+    <text x="375" y="365" fill="#475569" stroke="none" font-size="9.7" text-anchor="middle">
+      U6C: R34=1k, R33=560 (A_v2=3.119, 962kHz)
+    </text>
+    <text x="375" y="381" fill="#047857" stroke="none" font-size="9.7" font-weight="bold" text-anchor="middle">
+      R35 = 3k nối −5V → V_offset = +1.667V
+    </text>
+
+    <!-- Split to Block 7 -->
+    <line x1="486" y1="342" x2="500" y2="342" />
+    <circle cx="500" cy="342" r="3" fill="#0f172a" />
+    <polyline points="500,342 500,310 518,310" marker-end="url(#arrowSignal)" />
+    <polyline points="500,342 500,376 518,376" marker-end="url(#arrowSignal)" />
+
+    <!-- BLOCK 7: Bảo vệ ADC & U6D Trigger -->
+    <rect x="522" y="264" width="228" height="152" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2" />
+    <text x="636" y="282" fill="#1d4ed8" stroke="none" font-size="11.8" font-weight="bold" text-anchor="middle">
+      7. Bảo vệ ADC &amp; So sánh U6D Trigger
+    </text>
+    <!-- 7A -->
+    <rect x="532" y="289" width="208" height="52" rx="5" fill="#f8fafc" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="636" y="306" fill="#0f172a" stroke="none" font-size="10.5" font-weight="bold" text-anchor="middle">
+      Lọc thông thấp RC &amp; Kẹp áp ADC
+    </text>
+    <text x="636" y="321" fill="#475569" stroke="none" font-size="9.6" text-anchor="middle">
+      R36(120Ω) + C30(120pF, f_c = 11.05MHz)
+    </text>
+    <text x="636" y="335" fill="#475569" stroke="none" font-size="9.5" text-anchor="middle">
+      D8 (BAT54S → +3.3V) &amp; D9 (BAT54S → GND)
+    </text>
+    <!-- 7B -->
+    <rect x="532" y="350" width="208" height="56" rx="5" fill="#f0fdf4" stroke="#047857" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="636" y="367" fill="#047857" stroke="none" font-size="10.5" font-weight="bold" text-anchor="middle">
+      Mạch so sánh trễ Schmitt U6D
+    </text>
+    <text x="636" y="382" fill="#475569" stroke="none" font-size="9.6" text-anchor="middle">
+      R37(120Ω), hồi tiếp dương R38(100kΩ)
+    </text>
+    <text x="636" y="397" fill="#475569" stroke="none" font-size="9.4" text-anchor="middle">
+      Ngưỡng /Trig_PWM (R39, C31) → D7 (1N4148W)
+    </text>
+
+    <!-- Arrows to Block 8 -->
+    <line x1="750" y1="315" x2="788" y2="315" marker-end="url(#arrowSignal)" />
+    <text x="769" y="307" fill="#0f172a" stroke="none" font-size="9.5" font-weight="bold" text-anchor="middle">/ADC_in</text>
+
+    <line x1="750" y1="378" x2="788" y2="378" stroke="#047857" marker-end="url(#arrowTrig)" />
+    <text x="769" y="370" fill="#047857" stroke="none" font-size="9.5" font-weight="bold" text-anchor="middle">/Trigger</text>
+
+    <!-- BLOCK 8: YD-RP2040 -->
+    <rect x="792" y="280" width="174" height="124" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.4" />
+    <text x="879" y="302" fill="#1d4ed8" stroke="none" font-size="12.2" font-weight="bold" text-anchor="middle">
+      8. Module YD-RP2040 (U7)
+    </text>
+    <text x="879" y="321" fill="#0f172a" stroke="none" font-size="10.2" font-weight="bold" text-anchor="middle">
+      GPIO26 (ADC0): Thu mẫu DMA
+    </text>
+    <text x="879" y="338" fill="#475569" stroke="none" font-size="9.8" text-anchor="middle">
+      GPIO27/28/22: Đọc SW2, SW1, SW3
+    </text>
+    <text x="879" y="355" fill="#475569" stroke="none" font-size="9.8" text-anchor="middle">
+      GPIO20: Xuất /Trig_PWM (~1.65V)
+    </text>
+    <text x="879" y="372" fill="#475569" stroke="none" font-size="9.8" text-anchor="middle">
+      GPIO0: Phát xung vuông Test PWM
+    </text>
+    <text x="879" y="390" fill="#1d4ed8" stroke="none" font-size="9.8" font-weight="bold" text-anchor="middle">
+      USB-CDC ↔ Máy tính (WinForms)
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,127 @@
+<svg id="circuitSvg" class="schematic-svg w-full max-w-[720px] h-auto" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" width="1520" height="720" style="background-color: #ffffff; color: #0f172a; font-family: &quot;Times New Roman&quot;, Georgia, serif;"><rect x="0" y="0" width="760" height="360" fill="#ffffff"></rect>
+        <defs>
+          
+          <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 1 2 L 8 5 L 1 8 z" fill="#0f172a"></path>
+          </marker>
+        </defs>
+
+        
+        <g id="svgRoot" stroke="#0f172a" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+          
+          
+          <rect x="130" y="24" width="215" height="170" rx="8" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="6 4" fill="none" opacity="0.75"></rect>
+          <text x="237" y="42" fill="#1d4ed8" stroke="none" font-size="13" font-weight="bold" text-anchor="middle" class="sans">
+            Khối trở kháng trên Z₁ = R₁ // C₁
+          </text>
+
+          
+          <rect x="378" y="132" width="350" height="186" rx="8" stroke="#047857" stroke-width="1.5" stroke-dasharray="6 4" fill="none" opacity="0.75"></rect>
+          <text x="553" y="150" fill="#047857" stroke="none" font-size="13" font-weight="bold" text-anchor="middle" class="sans">
+            Khối trở kháng dưới Z₂ = R₂ // (C₂ + C_stray)
+          </text>
+
+          
+          
+          <circle cx="52" cy="118" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.2"></circle>
+          <text x="48" y="96" fill="#0f172a" stroke="none" font-size="19" font-weight="bold" text-anchor="middle">V<tspan dy="4" font-size="13">in</tspan></text>
+          <text x="52" y="142" fill="#475569" stroke="none" font-size="11.5" text-anchor="middle" class="sans">(Tín hiệu vào)</text>
+
+          
+          <line x1="57" y1="118" x2="155" y2="118"></line>
+          
+          <circle cx="155" cy="118" r="3.5" fill="#0f172a"></circle>
+
+          
+          
+          <line x1="155" y1="78" x2="155" y2="158"></line>
+
+          
+          <line x1="155" y1="78" x2="200" y2="78"></line>
+          
+          <polyline points="200,78 206,66 218,90 230,66 242,90 254,66 266,90 272,78" stroke-width="2.2"></polyline>
+          <line x1="272" y1="78" x2="318" y2="78"></line>
+          
+          <text x="236" y="57" fill="#0f172a" stroke="none" font-size="18" font-weight="bold" text-anchor="middle">R<tspan dy="4" font-size="12">1</tspan></text>
+
+          
+          <line x1="155" y1="158" x2="230" y2="158"></line>
+          
+          <line x1="230" y1="140" x2="230" y2="176" stroke-width="2.5"></line>
+          <line x1="242" y1="140" x2="242" y2="176" stroke-width="2.5"></line>
+          <line x1="242" y1="158" x2="318" y2="158"></line>
+          
+          <text x="236" y="133" fill="#0f172a" stroke="none" font-size="18" font-weight="bold" text-anchor="middle">C<tspan dy="4" font-size="12">1</tspan></text>
+
+          
+          <line x1="318" y1="78" x2="318" y2="158"></line>
+          
+          <circle cx="318" cy="118" r="3.5" fill="#0f172a"></circle>
+
+          
+          
+          <line x1="318" y1="118" x2="695" y2="118"></line>
+
+          
+          <circle cx="700" cy="118" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.2"></circle>
+          <text x="702" y="94" fill="#0f172a" stroke="none" font-size="19" font-weight="bold" text-anchor="middle">V<tspan dy="4" font-size="13">out</tspan></text>
+          <text x="695" y="72" fill="#475569" stroke="none" font-size="11.5" text-anchor="middle" class="sans">(Tới tầng đệm / ADC)</text>
+
+          
+          
+          <circle cx="420" cy="118" r="3.5" fill="#0f172a"></circle>
+          <line x1="420" y1="118" x2="420" y2="182"></line>
+          
+          <polyline points="420,182 432,188 408,200 432,212 408,224 432,236 408,248 420,254" stroke-width="2.2"></polyline>
+          <line x1="420" y1="254" x2="420" y2="298"></line>
+          
+          <text x="398" y="223" fill="#0f172a" stroke="none" font-size="18" font-weight="bold" text-anchor="end">R<tspan dy="4" font-size="12">2</tspan></text>
+
+          
+          <circle cx="535" cy="118" r="3.5" fill="#0f172a"></circle>
+          <line x1="535" y1="118" x2="535" y2="212"></line>
+          
+          <line x1="517" y1="212" x2="553" y2="212" stroke-width="2.5"></line>
+          <line x1="517" y1="224" x2="553" y2="224" stroke-width="2.5"></line>
+          <line x1="535" y1="224" x2="535" y2="298"></line>
+          
+          <text x="508" y="223" fill="#0f172a" stroke="none" font-size="18" font-weight="bold" text-anchor="end">C<tspan dy="4" font-size="12">2</tspan></text>
+
+          
+          <circle cx="650" cy="118" r="3.5" fill="#0f172a"></circle>
+          <line x1="650" y1="118" x2="650" y2="212" stroke-dasharray="5 3"></line>
+          
+          <line x1="632" y1="212" x2="668" y2="212" stroke-width="2.5"></line>
+          <line x1="632" y1="224" x2="668" y2="224" stroke-width="2.5"></line>
+          <line x1="650" y1="224" x2="650" y2="298" stroke-dasharray="5 3"></line>
+          
+          <text x="676" y="218" fill="#0f172a" stroke="none" font-size="18" font-weight="bold" text-anchor="start">C<tspan dy="4" font-size="12">stray</tspan></text>
+          <text x="676" y="236" fill="#475569" stroke="none" font-size="11" text-anchor="start" class="sans">(ký sinh)</text>
+
+          
+          
+          <line x1="52" y1="298" x2="695" y2="298"></line>
+          
+          <circle cx="52" cy="298" r="4" fill="#ffffff" stroke="#0f172a" stroke-width="2"></circle>
+          <circle cx="700" cy="298" r="4" fill="#ffffff" stroke="#0f172a" stroke-width="2"></circle>
+
+          
+          <circle cx="420" cy="298" r="3.5" fill="#0f172a"></circle>
+          <circle cx="535" cy="298" r="3.5" fill="#0f172a"></circle>
+          <circle cx="650" cy="298" r="3.5" fill="#0f172a"></circle>
+
+          
+          <line x1="535" y1="298" x2="535" y2="316"></line>
+          <line x1="515" y1="316" x2="555" y2="316" stroke-width="2.5"></line>
+          <line x1="522" y1="324" x2="548" y2="324" stroke-width="2.2"></line>
+          <line x1="529" y1="332" x2="541" y2="332" stroke-width="2"></line>
+          <text x="564" y="328" fill="#0f172a" stroke="none" font-size="13" font-weight="bold" class="sans">GND</text>
+
+          
+          <g stroke="#475569" stroke-width="1.3" opacity="0.7">
+            <line x1="52" y1="155" x2="52" y2="282" marker-end="url(#arrow)"></line>
+            <line x1="700" y1="134" x2="700" y2="282" marker-end="url(#arrow)"></line>
+          </g>
+        </g>
+      </svg>
