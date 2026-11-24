@@ -1,0 +1,20 @@
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.csproj.AssemblyReference.cache
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.Properties.Resources.resources
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.csproj.GenerateResource.cache
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.csproj.CoreCompileInputs.cache
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\bin\Debug\BTL_UDMT.exe.config
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\bin\Debug\BTL_UDMT.exe
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\bin\Debug\BTL_UDMT.pdb
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.exe
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.pdb
+C:\Users\My Laptop\source\repos\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.exe.config
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\bin\Debug\BTL_UDMT.exe.config
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\bin\Debug\BTL_UDMT.exe
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\bin\Debug\BTL_UDMT.pdb
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.csproj.AssemblyReference.cache
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.exe.config
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.Properties.Resources.resources
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.csproj.GenerateResource.cache
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.csproj.CoreCompileInputs.cache
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.exe
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Debug\BTL_UDMT.pdb

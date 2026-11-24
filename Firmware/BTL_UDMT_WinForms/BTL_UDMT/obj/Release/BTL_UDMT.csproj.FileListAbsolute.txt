@@ -1,0 +1,10 @@
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\bin\Release\BTL_UDMT.exe.config
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\bin\Release\BTL_UDMT.exe
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\bin\Release\BTL_UDMT.pdb
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.csproj.AssemblyReference.cache
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.Properties.Resources.resources
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.csproj.GenerateResource.cache
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.csproj.CoreCompileInputs.cache
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.exe
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.pdb
+D:\Downloads\UDMT_DL_DK\BTL_UDMT\BTL_UDMT\obj\Release\BTL_UDMT.exe.config
