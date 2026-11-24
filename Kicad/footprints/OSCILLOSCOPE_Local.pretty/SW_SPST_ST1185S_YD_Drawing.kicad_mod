@@ -1,0 +1,56 @@
+(footprint "SW_SPST_ST1185S_YD_Drawing"
+  (version 20241229)
+  (generator "kicad-mcp")
+  (generator_version "9.0")
+  (layer "F.Cu")
+  (descr "YD-RP2040 ST-1185S contact pattern derived from original dimensioned module drawing; pad pitch 4.35 mm. Body/courtyard are conservative assembly envelopes, not a tolerance drawing.")
+
+  (property "Reference" "REF**" (at 0 -3.8 0)
+    (layer "F.SilkS")
+    (uuid "488924f3-479a-4875-b678-ea3849462883")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (property "Value" "SW_SPST_ST1185S_YD_Drawing" (at 0 3.8 0)
+    (layer "F.Fab")
+    (uuid "e23714b0-0ee6-4098-ab45-7cddb1e6890c")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (property "Datasheet" "" (at 0 0 0)
+    (layer "F.Fab")
+    (uuid "f41501a9-7510-43fe-9901-25909c11a0ed")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+
+  (fp_rect
+    (start -1.9 -3.2)
+    (end 1.9 3.2)
+    (stroke (width 0.05) (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "2594d516-72a7-44b5-bba7-3face1377871")
+  )
+
+  (fp_rect
+    (start -1.6 -2.6)
+    (end 1.6 2.6)
+    (stroke (width 0.1) (type default))
+    (fill none)
+    (layer "F.Fab")
+    (uuid "51a204b6-ea57-4fb7-9636-81856451bc28")
+  )
+
+  (pad "1" smd rect
+    (at 0 2.175)
+    (size 1.7 1.15)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "74d1f731-1166-4db5-a57a-635c959c489e")
+  )
+
+  (pad "2" smd rect
+    (at 0 -2.175)
+    (size 1.7 1.15)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "36f96d21-d3c3-4b19-b0d0-97e150622114")
+  )
+
+)
