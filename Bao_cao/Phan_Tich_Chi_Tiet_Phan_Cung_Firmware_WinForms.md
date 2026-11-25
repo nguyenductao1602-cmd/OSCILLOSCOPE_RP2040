@@ -26,9 +26,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 #### a) Bảo vệ đầu vào nguồn `12V DC`
 - **Diode chống ngược cực `D1 (SS34)`**: Diode Schottky dòng định mức $`3\,\text{A}`$, điện áp ngược cực đại $`40\,\text{V}`$, sụt áp thuận thấp $`V_{F(D1)} \approx 0.35\text{–}0.45\,\text{V}`$. Khi cấp nguồn adapter $`V_{\text{adapter}} = 12.0\,\text{V}`$, điện áp trên đường `Vin` sau `D1` là:
 
-  ```math
-  V_{\text{in}} = V_{\text{adapter}} - V_{F(D1)} \approx 12.0 - 0.4 = 11.6\,\text{V}
-  ```
+  $`\displaystyle V_{\text{in}} = V_{\text{adapter}} - V_{F(D1)} \approx 12.0 - 0.4 = 11.6\,\text{V}`$
 
 - **Diode dập xung quá áp `D4 (P6KE12CA)`**: TVS hai chiều công suất đỉnh $`600\,\text{W}`$, điện áp làm việc danh định $`V_{WM} = 10.2\,\text{V}`$, điện áp đánh thủng $`V_{BR} \in [11.4\,\text{V}; 12.6\,\text{V}]`$, điện áp ghim cực đại $`V_C \approx 16.7\,\text{V}`$. Khi cắm nóng dây nguồn dài có điện cảm ký sinh $`L_{\text{wire}}`$, xung quá áp cộng hưởng $`LC`$ bị `D4` ghim chặt dưới $`16.7\,\text{V}`$, bảo vệ an toàn tuyệt đối cho ngưỡng chịu áp $`28\,\text{V}`$ của `MP1584`. Việc cắt ngắn chân `D4` sát mặt đồng giúp giảm điện cảm chân dẫn $`L_{\text{lead}} \to 0`$, triệt tiêu điện áp rơi cảm ứng $`\Delta V = L_{\text{lead}} \cdot \frac{di}{dt}`$.
 
@@ -36,9 +34,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 - **Công thức điện áp hồi tiếp của `MP1584`**: Điện áp tham chiếu nội tại chân `FB` (Pin 4) là $`V_{\text{FB}} = 0.80\,\text{V}`$.
 - **Nhánh dương `U1 (+8V)`**: Cầu phân áp hồi tiếp gồm biến trở tinh chỉnh `R5 (12k)` nối từ ngõ ra `+8V` về chân `FB` và điện trở `R6 = 8.2k` nối từ `FB` xuống `GNDREF`. Để đạt $`V_{+8\text{V}} = +8.00\,\text{V}`$, giá trị điện trở hồi tiếp tương đương cần thiết là:
 
-  ```math
-  V_{+8\text{V}} = V_{\text{FB}} \cdot \left(1 + \frac{R_5}{R_6}\right) \implies R_{5,\text{set}} = R_6 \cdot \left(\frac{8.00}{0.80} - 1\right) = 8.2\,\text{k}\Omega \times 9.0 = 73.8\,\text{k}\Omega
-  ```
+  $`\displaystyle V_{+8\text{V}} = V_{\text{FB}} \cdot \left(1 + \frac{R_5}{R_6}\right) \implies R_{5,\text{set}} = R_6 \cdot \left(\frac{8.00}{0.80} - 1\right) = 8.2\,\text{k}\Omega \times 9.0 = 73.8\,\text{k}\Omega`$
 
   (Hoặc sử dụng cầu phân áp đã hiệu chỉnh sẵn $`+8.0\,\text{V}`$ trên module buck rời.)
 
@@ -46,9 +42,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 
 - **Ứng suất điện áp trên nhánh đảo áp âm `U3 (−6V)`**: Trong cấu hình Inverting Buck-Boost (chân `GND` của `U3` nối với đầu ra `-6V`), điện áp tổng đặt lên khóa MOSFET phía cao bên trong `U3` là:
 
-  ```math
-  V_{\text{stress}(U3)} = V_{\text{in}} + \lvert V_{-6\text{V}} \rvert \approx 11.6\,\text{V} + 6.0\,\text{V} = 17.6\,\text{V} \lt 28\,\text{V}
-  ```
+  $`\displaystyle V_{\text{stress}(U3)} = V_{\text{in}} + \lvert V_{-6\text{V}} \rvert \approx 11.6\,\text{V} + 6.0\,\text{V} = 17.6\,\text{V} \lt 28\,\text{V}`$
 
 - **Lý do kỹ thuật chọn mức điện áp lệch (`+8V` / `−6V`) thay vì đối xứng (`±8V` hoặc `±6V`)**:
   - **Nhánh dương cần mức `+8.0V`**: Tầng ổn áp tuyến tính dương `U5 (KA78M05)` có điện áp rơi tối thiểu (dropout voltage) khá cao ($`V_{\text{drop}} \approx 2.0\,\text{V}`$), đồng thời nhánh `+5V` không chỉ nuôi `TL084` mà còn phải **gánh thêm toàn bộ tải của khối nguồn số `+3.3V`** (`U2: LM1117MP-3.3` cấp nguồn cho `YD-RP2040`). Đặt đầu ra `U1` ở $`+8.0\,\text{V}`$ tạo độ dự trữ áp $`\Delta V = 8.0 - 5.0 = 3.0\,\text{V} \gt V_{\text{drop(78M05)}} \approx 2.0\,\text{V}`$, giúp `U5` luôn ổn áp vững trong vùng tuyến tính ngay cả khi dòng tải số biến thiên.
@@ -57,9 +51,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 #### c) Tầng ổn áp tuyến tính dương `+5V` (`U5: KA78M05`) và số `+3.3V` (`U2: LM1117MP-3.3`)
 - **`U5 (KA78M05_TO252)`**: Nhận $`+8.0\,\text{V}`$ từ `U1` (độ chênh áp $`\Delta V = 8.0 - 5.0 = 3.0\,\text{V} \gt V_{\text{drop}} \approx 2.0\,\text{V}`$, đủ biên ổn áp khi gánh thêm tải `+3.3V`), ổn áp xuống $`+5.00\,\text{V}`$ ($`\pm 2\%`$), đi qua mắt lọc thông thấp $`LC`$ gồm `L6 = 100uH` và `C20 = 100uF` (kèm `C22 = 100nF`). Tần số cắt của mắt lọc $`L_6 C_{20}`$ là:
 
-  ```math
-  f_{c(+5\text{V})} = \frac{1}{2\pi\sqrt{L_6 C_{20}}} = \frac{1}{2\pi\sqrt{100 \times 10^{-6} \times 100 \times 10^{-6}}} \approx 1.59\,\text{kHz}
-  ```
+  $`\displaystyle f_{c(+5\text{V})} = \frac{1}{2\pi\sqrt{L_6 C_{20}}} = \frac{1}{2\pi\sqrt{100 \times 10^{-6} \times 100 \times 10^{-6}}} \approx 1.59\,\text{kHz}`$
 
   Tại tần số đóng cắt của bộ nguồn xung ($`f_{\text{sw}} \approx 500\,\text{kHz}\text{–}1.5\,\text{MHz}`$), mắt lọc $`L_6 C_{20}`$ suy giảm gợn sóng thêm hơn $`-80\,\text{dB}`$.
 - **`U2 (LM1117MP-3.3)`**: Hạ áp từ $`+5.0\,\text{V}`$ xuống $`+3.301\,\text{V}`$ (đo thực tế $`V_{\text{REF}} = 3.301\,\text{V}`$), độ sụt áp chênh lệch $`\Delta V = 5.0 - 3.3 = 1.7\,\text{V} \gt V_{\text{dropout}} \approx 1.1\,\text{V}`$, đảm bảo ổn áp tuyến tính hoàn toàn cho `YD-RP2040` và mức kẹp dương của `D8 (BAT54S)`.
@@ -71,9 +63,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
   - Điện áp tại cực gốc `B` của `Q1` được ghim ở mức $`-V_{Z(D5)} \approx -5.6\,\text{V}`$ (dòng phân cực qua `R43` là $`I_{R43} = \frac{6.0 - 5.6}{1\,\text{k}\Omega} \approx 0.4\,\text{mA}`$, hoặc khi nguồn âm trước ổn áp ở mức $`-6.8\,\text{V}`$ thì $`I_{R43} \approx 1.2\,\text{mA}`$).
   - Khi transistor thuận `Q1 (PNP)` dẫn trong vùng tích cực, mối nối Emitter–Base phân cực thuận với $`V_{EB} \approx 0.6\,\text{V}`$, giữ điện áp nhánh âm sau ổn áp (lọc qua `L7 = 100uH`, `C21 = 100uF`, `C23 = 100nF`) ổn định ở:
 
-    ```math
-    V_{-5\text{V}} = -V_{Z(D5)} + V_{EB(Q1)} \approx -5.6\,\text{V} + 0.6\,\text{V} = -5.00\,\text{V}
-    ```
+    $`\displaystyle V_{-5\text{V}} = -V_{Z(D5)} + V_{EB(Q1)} \approx -5.6\,\text{V} + 0.6\,\text{V} = -5.00\,\text{V}`$
 
   - **Ưu điểm so với `MC79M05`**: IC `MC79M05` đòi hỏi điện áp rơi tối thiểu (dropout) từ $`1.1\,\text{V}`$ đến $`2.0\,\text{V}`$ (cần đầu vào thấp hơn $`-6.5\,\text{V}`$ đến $`-7.0\,\text{V}`$), trong khi cấu trúc `Q1 (PNP) + D5 (5.6V)` có $`V_{\text{drop}} \approx 0.6\,\text{V}`$ nên hoạt động tốt ngay cả khi đầu vào chỉ ở mức $`-6.0\,\text{V}`$ với dòng tiêu thụ của riêng `TL084` chỉ khoảng $`I_{CC} \approx 5.6\,\text{mA}`$.
 
@@ -85,9 +75,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 - Khi `SW1` gạt sang vị trí `AC`, tụ `C1 = 100nF` mắc nối tiếp với trở kháng vào của cầu phân áp `SW2` ($`Z_{\text{in}} \approx 2.0\,\text{M}\Omega`$ ở thang `100mV` và `1V`, hoặc $`100\,\text{k}\Omega`$ ở thang `10mV` khi xét tần số thấp).
 - Tần số cắt dưới (High-Pass Filter) ở thang `100mV` và `1V` là:
 
-  ```math
-  f_{c,\text{AC}} = \frac{1}{2\pi \cdot R_{\text{in}} \cdot C_1} = \frac{1}{2\pi \times 2.0 \times 10^6 \times 100 \times 10^{-9}} \approx 0.796\,\text{Hz}
-  ```
+  $`\displaystyle f_{c,\text{AC}} = \frac{1}{2\pi \cdot R_{\text{in}} \cdot C_1} = \frac{1}{2\pi \times 2.0 \times 10^6 \times 100 \times 10^{-9}} \approx 0.796\,\text{Hz}`$
 
   Như vậy, mọi tín hiệu xoay chiều có tần số từ vài Hz trở lên đều đi qua không suy hao, trong khi thành phần một chiều ($`f = 0\,\text{Hz}`$) bị chặn hoàn toàn.
 
@@ -97,9 +85,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
    - **Linh kiện**: $`R_{17} = 100\,\text{k}\Omega`$ mắc song song với $`C_{24} = 200\,\text{pF}`$, dẫn thẳng vào ngõ vào JFET `U6A+` (chân 3, $`R_{\text{in}(U6A)} \approx 10^{12}\,\Omega`$, $`C_{\text{in}(U6A)} \approx 3\text{–}5\,\text{pF}`$).
    - **Hệ số truyền đạt một chiều** ($`\alpha_{1,10\text{mV}}`$):
 
-     ```math
-     \alpha_{1(10\text{mV})} = \frac{R_{\text{in}(U6A)}}{R_{17} + R_{\text{in}(U6A)}} \approx 1.0000
-     ```
+     $`\displaystyle \alpha_{1(10\text{mV})} = \frac{R_{\text{in}(U6A)}}{R_{17} + R_{\text{in}(U6A)}} \approx 1.0000`$
 
    - **Vai trò của** $`R_{17} \parallel C_{24}`$: $`R_{17} = 100\,\text{k}\Omega`$ đóng vai trò điện trở hạn dòng bảo vệ cửa cực JFET của `U6A` khi người dùng đo nhầm điện áp lớn ở thang nhạy nhất (`10mV`), còn $`C_{24} = 200\,\text{pF}`$ ($`\gg C_{\text{in}(U6A)}`$) tạo đường dẫn dung kháng thấp cho các hài tần số cao của xung vuông không bị suy giảm bởi mắt lọc $`R_{17} \cdot C_{\text{in}(U6A)}`$.
 
@@ -109,34 +95,24 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
      - Nhánh dưới (nối `S_GND`): $`R_{21} = 200\,\text{k}\Omega\,(1\%)`$ mắc song song với $`C_{29} = 15\,\text{pF}`$ và điện dung ký sinh của đường mạch + chân 3 `U6A` ($`C_{\text{stray}} \approx 12\,\text{pF}`$).
    - **Tổng trở kháng đầu vào**:
 
-     ```math
-     Z_{\text{in}(100\text{mV})} = R_{18} + R_{21} = 1.8\,\text{M}\Omega + 0.2\,\text{M}\Omega = 2.00\,\text{M}\Omega
-     ```
+     $`\displaystyle Z_{\text{in}(100\text{mV})} = R_{18} + R_{21} = 1.8\,\text{M}\Omega + 0.2\,\text{M}\Omega = 2.00\,\text{M}\Omega`$
 
    - **Trọng số phân áp thuần trở** ($`\alpha_{1,100\text{mV}}`$):
 
-     ```math
-     \alpha_{1(100\text{mV})} = \frac{R_{21}}{R_{18} + R_{21}} = \frac{200\,\text{k}\Omega}{1800\,\text{k}\Omega + 200\,\text{k}\Omega} = \frac{200}{2000} = 0.1000 \text{ (Tỷ lệ } 1:10\text{)}
-     ```
+     $`\displaystyle \alpha_{1(100\text{mV})} = \frac{R_{21}}{R_{18} + R_{21}} = \frac{200\,\text{k}\Omega}{1800\,\text{k}\Omega + 200\,\text{k}\Omega} = \frac{200}{2000} = 0.1000 \text{ (Tỷ lệ } 1:10\text{)}`$
 
    - **Kiểm chứng cân bằng hằng số thời gian bù tần số**:
      - Hằng số thời gian nhánh trên:
 
-       ```math
-       \tau_{\text{trên}(100\text{mV})} = R_{18} \cdot C_{25} = 1.8 \times 10^6\,\Omega \times 3 \times 10^{-12}\,\text{F} = 5.40\,\mu\text{s}
-       ```
+       $`\displaystyle \tau_{\text{trên}(100\text{mV})} = R_{18} \cdot C_{25} = 1.8 \times 10^6\,\Omega \times 3 \times 10^{-12}\,\text{F} = 5.40\,\mu\text{s}`$
 
      - Điện dung tổng nhánh dưới cần thiết để bù phẳng tuyệt đối:
 
-       ```math
-       C_{\text{dưới,cần}(100\text{mV})} = \frac{R_{18}}{R_{21}} \cdot C_{25} = \frac{1800\,\text{k}\Omega}{200\,\text{k}\Omega} \times 3\,\text{pF} = 9 \times 3\,\text{pF} = 27.0\,\text{pF}
-       ```
+       $`\displaystyle C_{\text{dưới,cần}(100\text{mV})} = \frac{R_{18}}{R_{21}} \cdot C_{25} = \frac{1800\,\text{k}\Omega}{200\,\text{k}\Omega} \times 3\,\text{pF} = 9 \times 3\,\text{pF} = 27.0\,\text{pF}`$
 
      - Với tụ gốm gắn cố định $`C_{29} = 15\,\text{pF}`$ cộng điện dung ký sinh tự nhiên của đường mạch phíp đồng và ngõ vào `U6A+` ($`C_{\text{stray}} \approx 12\,\text{pF}`$):
 
-       ```math
-       C_{\text{dưới,thực}} = C_{29} + C_{\text{stray}} = 15\,\text{pF} + 12\,\text{pF} = 27.0\,\text{pF} \implies \tau_{\text{dưới}(100\text{mV})} = 200\,\text{k}\Omega \times 27\,\text{pF} = 5.40\,\mu\text{s}
-       ```
+       $`\displaystyle C_{\text{dưới,thực}} = C_{29} + C_{\text{stray}} = 15\,\text{pF} + 12\,\text{pF} = 27.0\,\text{pF} \implies \tau_{\text{dưới}(100\text{mV})} = 200\,\text{k}\Omega \times 27\,\text{pF} = 5.40\,\mu\text{s}`$
 
        Hai hằng số thời gian khớp nhau hoàn toàn ($`\tau_{\text{trên}} = \tau_{\text{dưới}} = 5.40\,\mu\text{s}`$), giúp tỷ số chia ở cao tần $`\frac{C_{25}}{C_{25} + C_{29} + C_{\text{stray}}} = \frac{3}{3 + 27} = 0.1000`$ bằng đúng tỷ số chia một chiều!
 
@@ -146,38 +122,27 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
      - Nhánh dưới (nối `S_GND`): $`R_{20} = 20\,\text{k}\Omega\,(1\%)`$ mắc song song với cặp tụ gốm cố định $`C_{27} = 120\,\text{pF}`$ và $`C_{28} = 470\,\text{pF}`$ cùng điện dung ký sinh $`C_{\text{stray}} \approx 10\,\text{pF}`$.
    - **Tổng trở kháng đầu vào**:
 
-     ```math
-     Z_{\text{in}(1\text{V})} = R_{19} + R_{20} = 2.00\,\text{M}\Omega + 0.02\,\text{M}\Omega = 2.02\,\text{M}\Omega
-     ```
+     $`\displaystyle Z_{\text{in}(1\text{V})} = R_{19} + R_{20} = 2.00\,\text{M}\Omega + 0.02\,\text{M}\Omega = 2.02\,\text{M}\Omega`$
 
    - **Trọng số phân áp thuần trở** ($`\alpha_{1,1\text{V}}`$):
 
-     ```math
-     \alpha_{1(1\text{V})} = \frac{R_{20}}{R_{19} + R_{20}} = \frac{20\,\text{k}\Omega}{2000\,\text{k}\Omega + 20\,\text{k}\Omega} = \frac{20}{2020} = \frac{1}{101} \approx 0.00990099
-     ```
+     $`\displaystyle \alpha_{1(1\text{V})} = \frac{R_{20}}{R_{19} + R_{20}} = \frac{20\,\text{k}\Omega}{2000\,\text{k}\Omega + 20\,\text{k}\Omega} = \frac{20}{2020} = \frac{1}{101} \approx 0.00990099`$
 
      > **Chú ý:** Đây chính là lý do trong `Form1.cs` dòng 622, trọng số `alpha1` của thang `1V` được viết chính xác là `20.0 / 2020.0` thay vì `0.01`, giúp loại bỏ $`1\%`$ sai số hệ thống!
    - **Kiểm chứng cân bằng hằng số thời gian bù tần số**:
      - Hằng số thời gian nhánh trên:
 
-       ```math
-       \tau_{\text{trên}(1\text{V})} = R_{19} \cdot C_{26} = 2.0 \times 10^6\,\Omega \times 6 \times 10^{-12}\,\text{F} = 12.00\,\mu\text{s}
-       ```
+       $`\displaystyle \tau_{\text{trên}(1\text{V})} = R_{19} \cdot C_{26} = 2.0 \times 10^6\,\Omega \times 6 \times 10^{-12}\,\text{F} = 12.00\,\mu\text{s}`$
 
      - Điện dung tổng nhánh dưới cần thiết để bù phẳng ($`R_{19}/R_{20} = 2000\,\text{k}\Omega / 20\,\text{k}\Omega = 100`$):
 
-       ```math
-       C_{\text{dưới,cần}(1\text{V})} = \frac{R_{19}}{R_{20}} \cdot C_{26} = 100 \times 6\,\text{pF} = 600.0\,\text{pF}
-       ```
+       $`\displaystyle C_{\text{dưới,cần}(1\text{V})} = \frac{R_{19}}{R_{20}} \cdot C_{26} = 100 \times 6\,\text{pF} = 600.0\,\text{pF}`$
 
      - Tổng điện dung nhánh dưới trên mạch chính thức:
 
-       ```math
-       \begin{aligned}
-       C_{\text{dưới,thực}} &= C_{27} + C_{28} + C_{\text{stray}} = 120\,\text{pF} + 470\,\text{pF} + 10\,\text{pF} = 600.0\,\text{pF} \\
-       \implies \tau_{\text{dưới}(1\text{V})} &= R_{20} \cdot C_{\text{dưới,thực}} = 20\,\text{k}\Omega \times 600\,\text{pF} = 12.00\,\mu\text{s}
-       \end{aligned}
-       ```
+       $`\displaystyle C_{\text{dưới,thực}} = C_{27} + C_{28} + C_{\text{stray}} = 120\,\text{pF} + 470\,\text{pF} + 10\,\text{pF} = 600.0\,\text{pF}`$
+
+       $`\displaystyle \implies \tau_{\text{dưới}(1\text{V})} = R_{20} \cdot C_{\text{dưới,thực}} = 20\,\text{k}\Omega \times 600\,\text{pF} = 12.00\,\mu\text{s}`$
 
      - **Ý nghĩa thiết kế**: Khi nâng $`C_{26}`$ từ $`1\,\text{pF}`$ lên $`6\,\text{pF}`$ và nâng tụ nhánh dưới lên $`120\,\text{pF} + 470\,\text{pF} = 590\,\text{pF}`$, điện dung ký sinh $`C_{\text{stray}} \approx 10\,\text{pF}`$ của phíp đồng chỉ còn chiếm $`1.67\%`$ tổng điện dung nhánh dưới, giúp mạch cực kỳ ổn định và hầu như không bị lệch bù bởi dung sai phíp mạch!
 
@@ -188,9 +153,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 1. **Tầng đệm `U6A` (`TL084` chân 3+, chân 2−, chân 1 Out)**:
    - Chân 2 (`U6A−`) nối trực tiếp với chân 1 (`U6A Out`, mạng `/X1`), tạo thành mạch khuếch đại lặp điện áp (Voltage Follower):
 
-     ```math
-     A_{v(U6A)} = 1.0000, \quad BW_{U6A} \approx \text{GBWP} = 3.0\,\text{MHz}
-     ```
+     $`\displaystyle A_{v(U6A)} = 1.0000, \quad BW_{U6A} \approx \text{GBWP} = 3.0\,\text{MHz}`$
 
    - Trở kháng vào $`Z_{\text{in}(U6A)} \approx 10^{12}\,\Omega`$ không gây tải lên cầu chia `SW2`, trong khi trở kháng ra vòng kín $`Z_{\text{out}(U6A)} \lt 1\,\Omega`$ đủ sức kéo mạng điện trở thấp của `SW3`.
    - **Tại sao bỏ `D10/D11` trước chân 3 `U6A+`**: Tín hiệu tại chân 3 `U6A+` là tín hiệu xoay chiều lưỡng cực dao động quanh $`0\,\text{V}`$ (có cả bán kỳ dương lẫn bán kỳ âm), trong khi `U6A` được nuôi bằng nguồn đối xứng $`\pm 5\,\text{V}`$. Nếu gắn diode kẹp về `GND` tại chân 3, mọi bán kỳ âm dưới $`-0.3\,\text{V}`$ sẽ bị diode dẫn ghim mất. Do đó, việc bỏ `D10/D11` trên schematic chính thức là hoàn toàn chính xác.
@@ -198,29 +161,21 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 2. **Mạng chia tinh `SW3` (`R26 = 300Ω`, `R27 = 180Ω`, `R28 = 120Ω`)**:
    - Ba điện trở mắc nối tiếp từ ngõ ra chân 1 của `U6A` (mạng `/X1`) xuống `S_GND`:
 
-     ```math
-     R_{\text{tổng}(SW3)} = R_{26} + R_{27} + R_{28} = 300 + 180 + 120 = 600\,\Omega
-     ```
+     $`\displaystyle R_{\text{tổng}(SW3)} = R_{26} + R_{27} + R_{28} = 300 + 180 + 120 = 600\,\Omega`$
 
    - Dòng tải cực đại mà `U6A` phải cấp cho chuỗi `SW3` (khi đỉnh sóng tại `/X1` đạt $`\pm 1.8\,\text{V}`$) chỉ là $`I_{\text{load}} = \frac{1.8\,\text{V}}{600\,\Omega} = 3.0\,\text{mA}`$, nằm sâu trong vùng làm việc tuyến tính của `TL084`.
    - **Trọng số suy hao** $`\alpha_2`$ **tại 3 vị trí của `SW3A`**:
      - **Vị trí `/X1` (`SW3` Pin 1, lấy trực tiếp tại đầu trên của `R26`)**:
 
-       ```math
-       \alpha_{2(\text{X1})} = \frac{R_{26} + R_{27} + R_{28}}{R_{\text{tổng}}} = \frac{600}{600} = 1.0000
-       ```
+       $`\displaystyle \alpha_{2(\text{X1})} = \frac{R_{26} + R_{27} + R_{28}}{R_{\text{tổng}}} = \frac{600}{600} = 1.0000`$
 
      - **Vị trí `/X2` (`SW3` Pin 2, lấy giữa `R26` và `R27`)**:
 
-       ```math
-       \alpha_{2(\text{X2})} = \frac{R_{27} + R_{28}}{R_{26} + R_{27} + R_{28}} = \frac{180 + 120}{600} = \frac{300}{600} = 0.5000 \text{ (Chia } 2\text{)}
-       ```
+       $`\displaystyle \alpha_{2(\text{X2})} = \frac{R_{27} + R_{28}}{R_{26} + R_{27} + R_{28}} = \frac{180 + 120}{600} = \frac{300}{600} = 0.5000 \text{ (Chia } 2\text{)}`$
 
      - **Vị trí `/X5` (`SW3` Pin 4, lấy giữa `R27` và `R28`)**:
 
-       ```math
-       \alpha_{2(\text{X5})} = \frac{R_{28}}{R_{26} + R_{27} + R_{28}} = \frac{120}{600} = 0.2000 \text{ (Chia } 5\text{)}
-       ```
+       $`\displaystyle \alpha_{2(\text{X5})} = \frac{R_{28}}{R_{26} + R_{27} + R_{28}} = \frac{120}{600} = 0.2000 \text{ (Chia } 5\text{)}`$
 
 ---
 
@@ -233,15 +188,11 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 - Mạng hồi tiếp âm tại chân 6 (`U6B−`) gồm `R41 = 1k 1%` nối từ ngõ ra chân 7 về chân 6 và `R42 = 560Ω 1%` nối từ chân 6 xuống `S_GND`.
 - **Hệ số khuếch đại không đảo của `U6B`**:
 
-  ```math
-  A_{v1(U6B)} = 1 + \frac{R_{41}}{R_{42}} = 1 + \frac{1000}{560} = 1 + \frac{25}{14} = \frac{39}{14} \approx 2.785714\,\text{lần}
-  ```
+  $`\displaystyle A_{v1(U6B)} = 1 + \frac{R_{41}}{R_{42}} = 1 + \frac{1000}{560} = 1 + \frac{25}{14} = \frac{39}{14} \approx 2.785714\,\text{lần}`$
 
 - **Băng thông vòng kín của tầng `U6B`** (với $`\text{GBWP}_{\text{TL084}} = 3.0\,\text{MHz}`$):
 
-  ```math
-  BW_{U6B} = \frac{\text{GBWP}}{A_{v1(U6B)}} = \frac{3.0\,\text{MHz}}{2.785714} \approx 1.0769\,\text{MHz} \,(1076.9\,\text{kHz})
-  ```
+  $`\displaystyle BW_{U6B} = \frac{\text{GBWP}}{A_{v1(U6B)}} = \frac{3.0\,\text{MHz}}{2.785714} \approx 1.0769\,\text{MHz} \,(1076.9\,\text{kHz})`$
 
 #### b) Tầng khuếch đại thứ hai kết hợp dịch mức một chiều `U6C` (`TL084` chân 10+, chân 9−, chân 8 Out)
 - Ngõ ra chân 7 của `U6B` nối trực tiếp vào ngõ không đảo chân 10 (`U6C+`): $`V_{10} = A_{v1} \cdot V_5`$.
@@ -252,42 +203,30 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 - **Thiết lập phương trình nút Kirchhoff (KCL) tại chân 9 (`U6C−`)**:
   Do khuếch đại thuật toán làm việc trong vùng hồi tiếp âm tuyến tính nên $`V_9 = V_{10}`$ và dòng vào chân 9 bằng $`0`$:
 
-  ```math
-  \frac{V_8 - V_{10}}{R_{34}} = \frac{V_{10} - 0}{R_{33}} + \frac{V_{10} - (-5.00\,\text{V})}{R_{35}}
-  ```
+  $`\displaystyle \frac{V_8 - V_{10}}{R_{34}} = \frac{V_{10} - 0}{R_{33}} + \frac{V_{10} - (-5.00\,\text{V})}{R_{35}}`$
 
   Nhân hai vế với $`R_{34}`$ và chuyển vế tìm điện áp ngõ ra $`V_8 = V_{\text{out}(U6C)}`$:
 
-  ```math
-  V_8 = V_{10} \cdot \left(1 + \frac{R_{34}}{R_{33}} + \frac{R_{34}}{R_{35}}\right) + 5.00\,\text{V} \cdot \left(\frac{R_{34}}{R_{35}}\right)
-  ```
+  $`\displaystyle V_8 = V_{10} \cdot \left(1 + \frac{R_{34}}{R_{33}} + \frac{R_{34}}{R_{35}}\right) + 5.00\,\text{V} \cdot \left(\frac{R_{34}}{R_{35}}\right)`$
 
 - **Hệ số khuếch đại tín hiệu xoay chiều của tầng `U6C`** ($`A_{v2}`$):
 
-  ```math
-  A_{v2(U6C)} = 1 + \frac{R_{34}}{R_{33}} + \frac{R_{34}}{R_{35}} = 1 + \frac{1000}{560} + \frac{1000}{3000} = 1 + 1.785714 + 0.333333 = \frac{131}{42} \approx 3.119048\,\text{lần}
-  ```
+  $`\displaystyle A_{v2(U6C)} = 1 + \frac{R_{34}}{R_{33}} + \frac{R_{34}}{R_{35}} = 1 + \frac{1000}{560} + \frac{1000}{3000} = 1 + 1.785714 + 0.333333 = \frac{131}{42} \approx 3.119048\,\text{lần}`$
 
 - **Băng thông vòng kín của tầng `U6C`**:
 
-  ```math
-  BW_{U6C} = \frac{\text{GBWP}}{A_{v2(U6C)}} = \frac{3.0\,\text{MHz}}{3.119048} \approx 961.83\,\text{kHz}
-  ```
+  $`\displaystyle BW_{U6C} = \frac{\text{GBWP}}{A_{v2(U6C)}} = \frac{3.0\,\text{MHz}}{3.119048} \approx 961.83\,\text{kHz}`$
 
 - **Điện áp dịch mức một chiều (DC Offset) tại ngõ ra `U6C`** (khi $`V_{\text{in}} = 0\,\text{V} \implies V_{10} = 0\,\text{V}`$):
 
-  ```math
-  V_{\text{offset}} = \lvert -5.00\,\text{V} \rvert \cdot \frac{R_{34}}{R_{35}} = 5.00\,\text{V} \times \frac{1000\,\Omega}{3000\,\Omega} = +1.6667\,\text{V}
-  ```
+  $`\displaystyle V_{\text{offset}} = \lvert -5.00\,\text{V} \rvert \cdot \frac{R_{34}}{R_{35}} = 5.00\,\text{V} \times \frac{1000\,\Omega}{3000\,\Omega} = +1.6667\,\text{V}`$
 
   > **Lưu ý quan trọng:** $`V_{\text{offset}}`$ chỉ phụ thuộc vào tỷ số $`R_{34}/R_{35}`$ và nguồn $`-5\,\text{V}`$, hoàn toàn độc lập với $`R_{33}`$! Khi nguồn $`-5\,\text{V}`$ thực tế đạt khoảng $`-4.95\,\text{V}`$ đến $`-5.02\,\text{V}`$, điểm tĩnh đo được tại `/ADC_in` nằm trong khoảng $`+1.650\,\text{V}`$ đến $`+1.675\,\text{V}`$, khớp tuyệt đối với hằng số `ADC_MID_VOLT = 1.650` trong `Form1.cs`.
 
 #### c) Tổng độ lợi hai tầng `U6B × U6C` (`AFE_AMP_GAIN`) và băng thông toàn chuỗi
 - **Tổng hệ số khuếch đại không đảo của cụm `U6B – U6C`**:
 
-  ```math
-  A_{v,\text{total}} = A_{v1(U6B)} \times A_{v2(U6C)} = \frac{39}{14} \times \frac{131}{42} = \frac{5109}{588} \approx 8.688776\,\text{lần}
-  ```
+  $`\displaystyle A_{v,\text{total}} = A_{v1(U6B)} \times A_{v2(U6C)} = \frac{39}{14} \times \frac{131}{42} = \frac{5109}{588} \approx 8.688776\,\text{lần}`$
 
   Trong `Form1.cs` (dòng 18), hằng số này được khai báo chính xác bằng biểu thức:
 
@@ -297,24 +236,18 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 - **Băng thông tổng hợp** ($`-3\,\text{dB}`$) **của 2 tầng khuếch đại bậc 1 mắc nối tiếp**:
   Với $`f_1 = 1076.9\,\text{kHz}`$ và $`f_2 = 961.8\,\text{kHz}`$, băng thông tổng hợp của chuỗi 2 tầng xấp xỉ:
 
-  ```math
-  BW_{\text{cascade}} \approx \frac{1}{\sqrt{\frac{1}{f_1^2} + \frac{1}{f_2^2}}} \approx 655\text{–}715\,\text{kHz}
-  ```
+  $`\displaystyle BW_{\text{cascade}} \approx \frac{1}{\sqrt{\frac{1}{f_1^2} + \frac{1}{f_2^2}}} \approx 655\text{–}715\,\text{kHz}`$
 
   Cao gần **gấp đôi** so với phương án dồn toàn bộ độ lợi $`8.69\times`$ vào một tầng đơn lẻ ($`BW_{\text{1-stage}} = \frac{3000\,\text{kHz}}{8.6888} \approx 345\,\text{kHz}`$)!
 
 #### d) Phương trình tổng quát quy đổi điện áp từ `V_in` sang `V_ADC` và ngược lại
 - **Chiều thuận** (từ đầu vào BNC $`V_{\text{in}}`$ tới chân `GPIO26 / ADC0`):
 
-  ```math
-  V_{\text{ADC}} = V_{\text{offset}} + V_{\text{in}} \cdot \alpha_1 \cdot \alpha_2 \cdot A_{v,\text{total}} = 1.650 + V_{\text{in}} \cdot \alpha_1 \cdot \alpha_2 \cdot 8.6888
-  ```
+  $`\displaystyle V_{\text{ADC}} = V_{\text{offset}} + V_{\text{in}} \cdot \alpha_1 \cdot \alpha_2 \cdot A_{v,\text{total}} = 1.650 + V_{\text{in}} \cdot \alpha_1 \cdot \alpha_2 \cdot 8.6888`$
 
 - **Chiều nghịch** (khôi phục điện áp thực $`V_{\text{in}}`$ trên phần mềm WinForms `Form1.cs`):
 
-  ```math
-  V_{\text{in}} = \frac{V_{\text{ADC}} - 1.650}{8.6888 \cdot \alpha_1 \cdot \alpha_{2,\text{hw}}}
-  ```
+  $`\displaystyle V_{\text{in}} = \frac{V_{\text{ADC}} - 1.650}{8.6888 \cdot \alpha_1 \cdot \alpha_{2,\text{hw}}}`$
 
 - **Bảng tổng hợp trọng số toàn dải đo**:
 
@@ -335,35 +268,25 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 1. **Mắt lọc thông thấp chống chồng phổ / nhiễu gai trước ADC (`R36 = 120Ω`, `C30 = 120pF`)**:
    - Tần số cắt thông thấp:
 
-     ```math
-     f_{c(\text{ADC})} = \frac{1}{2\pi R_{36} C_{30}} = \frac{1}{2\pi \times 120\,\Omega \times 120 \times 10^{-12}\,\text{F}} \approx 11.05\,\text{MHz}
-     ```
+     $`\displaystyle f_{c(\text{ADC})} = \frac{1}{2\pi R_{36} C_{30}} = \frac{1}{2\pi \times 120\,\Omega \times 120 \times 10^{-12}\,\text{F}} \approx 11.05\,\text{MHz}`$
 
    - Vai trò kép: (1) `C30 = 120pF` đóng vai trò bể chứa điện tích tức thời (charge reservoir) cung cấp dòng nạp nhanh cho tụ lấy mẫu nội ($`C_{\text{S\&H}} \approx 1\,\text{pF}`$) của SAR ADC trên RP2040 khi lấy mẫu ở tốc độ $`3.00\,\text{MSa/s}`$; (2) `R36 = 120Ω` giới hạn dòng qua cặp diode Schottky `D8` (kẹp lên `+3V3`) và `D9` (kẹp xuống `S_GND`) ở mức an toàn:
 
-     ```math
-     I_{\text{clamp,max}} \approx \frac{3.8\,\text{V} - 3.3\,\text{V}}{120\,\Omega} \approx 4.2\,\text{mA} \ll I_{F(\text{BAT54S})} = 200\,\text{mA}
-     ```
+     $`\displaystyle I_{\text{clamp,max}} \approx \frac{3.8\,\text{V} - 3.3\,\text{V}}{120\,\Omega} \approx 4.2\,\text{mA} \ll I_{F(\text{BAT54S})} = 200\,\text{mA}`$
 
 2. **Mạch lọc PWM tạo ngưỡng Trigger (`R39 = 100kΩ`, `C31 = 100nF`) và Schmitt Trigger `U6D`**:
    - Chân `GPIO20` (`/Trig_PWM`) xuất xung PWM tần số $`f_{\text{PWM}} = 100\,\text{kHz}`$, hệ số lấp đầy $`D = 50\%`$.
    - Mắt lọc thông thấp `R39 = 100kΩ`, `C31 = 100nF` có tần số cắt:
 
-     ```math
-     f_{c(\text{TrigPWM})} = \frac{1}{2\pi R_{39} C_{31}} = \frac{1}{2\pi \times 100 \times 10^3 \times 100 \times 10^{-9}} \approx 15.92\,\text{Hz}
-     ```
+     $`\displaystyle f_{c(\text{TrigPWM})} = \frac{1}{2\pi R_{39} C_{31}} = \frac{1}{2\pi \times 100 \times 10^3 \times 100 \times 10^{-9}} \approx 15.92\,\text{Hz}`$
 
      Tại $`f_{\text{PWM}} = 100\,\text{kHz}`$ (cao gấp $`6280`$ lần tần số cắt), gợn sóng xoay chiều bị suy giảm xuống dưới $`0.5\,\text{mV}`$, tạo ra điện áp chuẩn một chiều phẳng tại chân 13 (`U6D−`):
 
-     ```math
-     V_{\text{ref}(U6D-)} = D \cdot V_{\text{IO}} = 0.50 \times 3.301\,\text{V} \approx +1.6505\,\text{V}
-     ```
+     $`\displaystyle V_{\text{ref}(U6D-)} = D \cdot V_{\text{IO}} = 0.50 \times 3.301\,\text{V} \approx +1.6505\,\text{V}`$
 
    - Tại ngõ vào không đảo chân 12 (`U6D+`), điện trở vào `R37 = 120Ω` và điện trở hồi tiếp dương `R38 = 100kΩ` (từ chân 14 về chân 12) tạo dải trễ Schmitt (Hysteresis) chống rung xung khi tín hiệu đi qua ngưỡng:
 
-     ```math
-     \Delta V_{\text{hyst}(U6D)} = (V_{\text{OH}} - V_{\text{OL}}) \cdot \frac{R_{37}}{R_{37} + R_{38}} \approx 7.5\,\text{V} \times \frac{120}{100120} \approx 9.0\,\text{mV}
-     ```
+     $`\displaystyle \Delta V_{\text{hyst}(U6D)} = (V_{\text{OH}} - V_{\text{OL}}) \cdot \frac{R_{37}}{R_{37} + R_{38}} \approx 7.5\,\text{V} \times \frac{120}{100120} \approx 9.0\,\text{mV}`$
 
    - Ngõ ra chân 14 của `U6D` đi qua `R40 = 1k`, diode chỉnh lưu nửa chu kỳ dương `D7 (1N4148W)` (chặn hoàn toàn mức bão hòa âm $`-3.8\,\text{V}`$ của `U6D`) và điện trở phân áp xuống đất `R53 = 1k` để hạ mức đỉnh dương về khoảng $`\frac{3.8 - 0.6}{2} \approx +1.6\,\text{V} \div +2.0\,\text{V}`$ an toàn cho chân `GPIO21` (`/Trigger`).
 
@@ -463,9 +386,7 @@ Tệp `firmware_winform_arduino/rp2040_dso_dma/rp2040_dso_dma.ino` (`271` dòng)
      - Nếu rơi vào vùng chuyển tiếp giữa các nấc (do người dùng đang gạt dở tay), hàm giữ nguyên trạng thái `prev` trước đó để giao diện không bị nhảy loạn.
   4. **Cấu trúc bit của `swByte`**:
 
-     ```math
-     \text{swByte} = (\text{sw1} \mathbin{\&} \text{0x03}) \mid ((\text{sw2} \mathbin{\&} \text{0x03}) \ll 2) \mid ((\text{sw3} \mathbin{\&} \text{0x01}) \ll 4)
-     ```
+     $`\displaystyle \text{swByte} = (\text{sw1} \mathbin{\&} \text{0x03}) \mid ((\text{sw2} \mathbin{\&} \text{0x03}) \ll 2) \mid ((\text{sw3} \mathbin{\&} \text{0x01}) \ll 4)`$
 
      - Bit `[1:0]`: `SW1` (`0 = GND`, `1 = AC`, `2 = DC`)
      - Bit `[3:2]`: `SW2` (`0 = 1V`, `1 = 100mV`, `2 = 10mV`)
@@ -520,9 +441,7 @@ Một lỗi phổ biến của các ứng dụng WinForms dùng `System.IO.Ports
   - Kiểm tra mã `calcChecksum = rateCode ^ swByte ^ payload[0..2047]`. Khi khớp hoàn toàn với `rxBuffer[2052]`:
     - Giải mã 1024 mẫu 12-bit sang điện áp tại chân ADC:
 
-      ```math
-      \text{rawAdcVolts}[s] = \frac{(\text{hi} \ll 8) \mid \text{lo}}{4095.0} \times 3.301
-      ```
+      $`\displaystyle \text{rawAdcVolts}[s] = \frac{(\text{hi} \ll 8) \mid \text{lo}}{4095.0} \times 3.301`$
 
     - Cập nhật `hwSwByte = swByte`, `hwRateCode = rateCode`, bật `hasNewFrame = true` và `gotValidFrame = true`.
 
@@ -536,9 +455,7 @@ Một lỗi phổ biến của các ứng dụng WinForms dùng `System.IO.Ports
   - Tính tổng độ lợi thực tế: `totalGain = AFE_AMP_GAIN * alpha1 * hwAlpha2`.
   - Quy đổi từng mẫu trên bộ đệm trung gian `workVolts`:
 
-    ```math
-    \text{workVolts}[i] = \frac{\text{rawAdcVolts}[i] - 1.650}{\text{totalGain}}
-    ```
+    $`\displaystyle \text{workVolts}[i] = \frac{\text{rawAdcVolts}[i] - 1.650}{\text{totalGain}}`$
 
   - Tính giá trị trung bình một chiều `dcOffset = sum / 1024`. Nếu đang ở chế độ ghép `AC` (`radCplAC.Checked`), trừ tiếp `dcOffset` khỏi toàn bộ 1024 mẫu để đưa sóng xoay chiều cân bằng hoàn toàn quanh trục $`0\,\text{V}`$.
 
@@ -555,15 +472,11 @@ Một lỗi phổ biến của các ứng dụng WinForms dùng `System.IO.Ports
 - **Thuật toán đo 8 đại lượng tự động (`Vmax, Vmin, Vpp, Vavg, Vrms, Freq, Period, Duty`)**:
   - Duyệt qua 1024 mẫu của `inputSignalVolts` để tìm cực đại $`V_{\text{max}}`$, cực tiểu $`V_{\text{min}}`$, biên độ đỉnh-đỉnh $`V_{pp} = V_{\text{max}} - V_{\text{min}}`$, giá trị trung bình $`V_{\text{avg}}`$ và giá trị hiệu dụng:
 
-    ```math
-    V_{\text{rms}} = \sqrt{\frac{1}{1024}\sum_{i=0}^{1023} V_{\text{in}}^2[i]}
-    ```
+    $`\displaystyle V_{\text{rms}} = \sqrt{\frac{1}{1024}\sum_{i=0}^{1023} V_{\text{in}}^2[i]}`$
 
   - Trong `CalculateFrequencyAndDuty(midLevel, vpp)`: Dùng bộ so sánh trễ hai ngưỡng quanh mức giữa $`\text{midLevel} = \frac{V_{\text{max}} + V_{\text{min}}}{2}`$ với dải trễ $`\text{hyst} = 0.10 \times V_{pp}`$ (chỉ bật cờ `armed = true` khi tín hiệu xuống dưới $`\text{midLevel} - \text{hyst}`$, và ghi nhận một chu kỳ mới khi tín hiệu vượt qua $`\text{midLevel} + \text{hyst}`$). Khi thu được $`K \ge 2`$ điểm cắt sườn lên tại các chỉ số mẫu $`n_0, n_1, \dots, n_{K-1}`$, số mẫu trung bình trên một chu kỳ và tần số được tính chính xác trên toàn chuỗi chu kỳ:
 
-    ```math
-    N_{\text{avg}} = \frac{n_{K-1} - n_0}{K - 1}, \quad f = \frac{F_s}{N_{\text{avg}}}, \quad T = \frac{1000}{f}\,(\text{ms}), \quad \text{Duty} = \frac{N_{\text{high}}}{1024} \times 100\%
-    ```
+    $`\displaystyle N_{\text{avg}} = \frac{n_{K-1} - n_0}{K - 1}, \quad f = \frac{F_s}{N_{\text{avg}}}, \quad T = \frac{1000}{f}\,(\text{ms}), \quad \text{Duty} = \frac{N_{\text{high}}}{1024} \times 100\%`$
 
 ### 3.5. Kết xuất Đồ họa GDI+ 2D và Tương tác Con trỏ (`Form1.cs` dòng `790–1070`)
 
@@ -573,9 +486,7 @@ Một lỗi phổ biến của các ứng dụng WinForms dùng `System.IO.Ports
   3. `DrawMarkersAndTriggerLine`: Vẽ ký hiệu mốc `0V>` theo vị trí thanh trượt `trkVPos` và đường nét đứt mức kích hoạt `T>` theo `trkTrigLevel`.
   4. `DrawWaveform`: Tính số mẫu cần hiển thị trên 10 ô ngang:
 
-     ```math
-     N_{\text{screen}} = \text{clamp}\left(\lfloor 10 \times T_{\text{div}} \times F_s \rfloor,\, 20,\, 512\right)
-     ```
+     $`\displaystyle N_{\text{screen}} = \text{clamp}\left(\lfloor 10 \times T_{\text{div}} \times F_s \rfloor,\, 20,\, 512\right)`$
 
      Căn điểm `triggerIndex` vào chính giữa màn hình cộng độ lệch ngang `trkHPos.Value`, ánh xạ từng mẫu sang tọa độ điểm ảnh $`(x, y)`$, vẽ hai đường gióng ngang $`V_{\text{max}} / V_{\text{min}}`$ và nối tuyến tính chuỗi điểm sóng bằng bút nét đen `1.6px` có khử răng cưa (`SmoothingMode.AntiAlias`).
   5. `DrawCursors`: Khi bật con trỏ đo, cho phép kéo chuột trái (đặt `Cursor 1`) và chuột phải (đặt `Cursor 2`) trực tiếp trên màn hình sóng để đo khoảng thời gian $`\Delta T\,(\text{ms})`$ và tần số tức thời $`1/\Delta T\,(\text{Hz})`$.
