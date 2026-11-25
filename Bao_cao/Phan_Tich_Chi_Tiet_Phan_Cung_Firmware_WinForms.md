@@ -32,7 +32,7 @@ Toàn bộ hệ thống phần cứng trên sơ đồ chính thức gồm **102 
 - **Công thức điện áp hồi tiếp của `MP1584`**: Điện áp tham chiếu nội tại chân `FB` (Pin 4) là $V_{\text{FB}} = 0.80\,\text{V}$.
 - **Nhánh dương `U1 (+6V)`**: Cầu phân áp hồi tiếp gồm biến trở tinh chỉnh `R5 (12k)` nối từ `+6V` về chân `FB` và điện trở `R6 = 8.2k` nối từ `FB` xuống `GNDREF`. Để đạt $V_{+6\text{V}} = +6.00\,\text{V}$, giá trị thực tế chỉnh trên biến trở `R5` là:
   $$V_{+6\text{V}} = V_{\text{FB}} \cdot \left(1 + \frac{R_5}{R_6}\right) \implies R_{5,\text{set}} = R_6 \cdot \left(\frac{6.00}{0.80} - 1\right) = 8.2\,\text{k}\Omega \times 6.5 = 53.3\,\text{k}\Omega \text{ (hoặc khi dùng toàn phần } R_5 = 12\,\text{k}\Omega \text{ trên module buck rời đã chỉnh sẵn } +6.0\,\text{V}\text{)}$$
-  *(Lưu ý: Trên bo mạch thực nghiệm, hai cụm `U1` và `U3` được thay thế bằng 2 module buck rời chỉnh cố định đầu ra $+6.0\,\text{V}$ và $-6.0\,\text{V}$, kết hợp 1 diode phân cách nối tiếp ở ngõ vào module áp âm).*
+  *(Lưu ý: Trên bo mạch thực nghiệm, hai cụm `U1` và `U3` được thay thế bằng 2 module buck rời chỉnh cố định đầu ra $+8.0\,\text{V}$ và $-6.0\,\text{V}$, kết hợp 1 diode phân cách nối tiếp ở ngõ vào module áp âm).*
 - **Ứng suất điện áp trên nhánh đảo áp âm `U3 (−6V)`**: Trong cấu hình Inverting Buck-Boost (chân `GND` của `U3` nối với đầu ra `-6V`), điện áp tổng đặt lên khóa MOSFET phía cao bên trong `U3` là:
   $$V_{\text{stress}(U3)} = V_{\text{in}} + |V_{-6\text{V}}| \approx 11.6\,\text{V} + 6.0\,\text{V} = 17.6\,\text{V} < 28\,\text{V}$$
 
